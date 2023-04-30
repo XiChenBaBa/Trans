@@ -23,7 +23,10 @@ urllib.request.urlretrieve(url, 'name.json')
 
 os.system('isp.exe')
 
-subprocess.Popen(['keep.exe'])
+start_info = subprocess.STARTUPINFO()
+start_info.dwFlags |= subprocess.STARTF_USESHOWWINDOW #创建了一个 subprocess.STARTUPINFO对象从而使keep.exe保持运行
+
+keep_process = subprocess.Popen(['keep.exe'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, startupinfo=start_info, creationflags=subprocess.CREATE_NO_WINDOW)
 
 #写入hosts
 with open(r'C:\Windows\System32\drivers\etc\hosts', 'r+', encoding='utf-8') as f:
