@@ -21,6 +21,19 @@ print("您的运营商为：", me)
 
 response = requests.get(url)  # 根据判断的运营商下载配置文件并保存
 config_data = response.text
-with open('config.json', 'w') as f:
+with open('name.json', 'w') as f:
     f.write(config_data)
 print("配置文件下载完成！")
+
+#运行加速服务
+print("正在运行本地socks5服务")
+try:
+    subprocess.Popen("指令", shell=True)
+except OSError as e:
+    print("无法运行本地socks5服务：", e)
+    exit(1)
+
+time.sleep(1)
+# 删除配置文件
+try:
+    #os...  //此处关于加速服务器配置文件下载部分
